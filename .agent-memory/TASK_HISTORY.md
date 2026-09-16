@@ -31,3 +31,19 @@ Important decisions: Created an empty metadata-only main base because the new Gi
 Testing performed: Verified clean local `main`, `origin/main` alignment, and merged PR state.
 
 Follow-up: For every future change, use a non-main branch, push it, create a PR with `gh`, pass checks/review, merge the PR, and clean up the branch.
+
+## 2026-09-16: Task 3 Packaging
+
+Task: Determine the supported production packaging/startup path.
+
+Reason: Separate reproducible release packaging from the verified developer COM bootstrap.
+
+Files/areas affected: `scripts/Build-Release.ps1`, `packaging/`, `.gitignore`, README, and project documentation.
+
+What changed: Added a clean/test/validate ZIP release process and package-local session install/remove scripts. The package contains only the WPF Docker assembly and required session tooling.
+
+Important decisions: Do not invent a `.addon` schema or automatic .NET startup mechanism. Core-owned interop assemblies are not redistributed.
+
+Testing performed: Release package build passed; extracted package install made the Docker visible in CorelDRAW 27.1.0.129; package uninstall removed it. A subsequent fresh-launch visibility query returned true, but rendered/functioning automatic startup was not confirmed.
+
+Follow-up: Resolve whether the fresh-launch state is supported CorelDRAW workspace persistence or an official addon mechanism before claiming automatic startup.

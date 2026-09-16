@@ -33,6 +33,12 @@ The official Corel pages were not usable as machine-readable content because the
 
 The installed CorelDRAW suite contains native addon directories under `Programs64\Addons\<Name>` with a native DLL and zero-byte `.addon` marker files. No official .NET `.addon` package template, VSTA tool, or automatic startup registration artifact was found locally. CorelMate currently uses the supported-looking `FrameWork.AddDocker` .NET assembly path through `scripts\Install-Dev.ps1`; this is a reproducible developer bootstrap, not a production installer or automatic startup addon.
 
+## Release package
+
+`scripts\Build-Release.ps1` produces `artifacts\CorelMate-0.1.0-docker.zip`. The package contains `CorelMate.UI.dll`, the verified .NET Framework 4.8 WPF Docker assembly, package-local session install/remove scripts, and a README. It deliberately excludes `Corel.Interop.CorelDRAW.dll` and `Corel.Interop.VGCore.dll`; CorelDRAW supplies those Corel-owned host assemblies. Source, tests, PDBs, local configuration, and developer scripts are also excluded.
+
+Release validation checks required files, prohibited assemblies, debug/development artifacts, secrets, and absolute developer paths. The package-local installer was tested from a temporary extracted directory against CorelDRAW 27.1.0.129: the Docker became visible, then the package-local uninstaller removed it. This verifies session installation only, not startup after a fresh CorelDRAW launch.
+
 ## Developer installation
 
 From the repository root, run `powershell -ExecutionPolicy Bypass -File .\scripts\Install-Dev.ps1`. The script builds the solution, creates a CorelDRAW COM automation object, calls `AddDocker`, and calls `ShowDocker`. The Docker can then be hidden/reopened through CorelDRAW's Docker UI. Run `scripts\Uninstall-Dev.ps1` to remove the Docker from the current session. These scripts do not copy files into Corel's installation directory.
@@ -40,6 +46,8 @@ From the repository root, run `powershell -ExecutionPolicy Bypass -File .\script
 ## Remaining unverified behavior
 
 No VSTA executable or VSTA runtime was found in the searched Visual Studio locations. Automatic CorelDRAW startup loading from a `.addon` package has not been verified. The current proven path requires the developer bootstrap script or an equivalent Corel macro/command to invoke `FrameWork.AddDocker`.
+
+No registry hack, DLL injection, polling process, executable modification, or guessed XML/.addon schema was added.
 
 Official starting points: [CorelDRAW SDK](https://www.coreldraw.com/en/pages/sdk/) and [CorelDRAW SDK Guide](https://community.coreldraw.com/sdk/w/guide/214/overview).
 

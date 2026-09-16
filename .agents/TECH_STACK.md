@@ -7,3 +7,4 @@
 - MSBuild via .NET SDK 10.0.103.
 - No third-party packages in the foundation milestone.
 - Tests are a dependency-free .NET 10 executable until the host-independent test suite grows enough to justify a framework.
+- `scripts/Build-Release.ps1` creates a validated ZIP package without debug symbols or Corel-owned interop redistribution.

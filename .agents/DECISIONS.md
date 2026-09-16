@@ -25,3 +25,19 @@ Alternatives considered: WinForms `UserControl`, WinForms `Form`, HTML/JavaScrip
 Reason: WPF successfully rendered inside CorelDRAW v27.1. WinForms controls registered but failed during `ShowDocker` with `RPC_E_SERVERFAULT` and rendered blank.
 
 Verification: CorelDRAW 2026 displayed the panel; show, hide, and reopen were exercised through the real COM API.
+
+## ADR-005: Ship A Session-Install ZIP, Not An Unverified Startup Addon
+
+Status: Accepted for Task 3; automatic startup remains unverified.
+
+Context: v27.1 exposes `FrameWork.AddDocker`, but local shipped `.addon` files are zero-byte markers beside native DLLs. No verified .NET `.addon` schema, startup callback, or VSTA runtime is available on this machine, and official web pages are blocked from machine-readable extraction.
+
+Decision: Ship a reproducible ZIP containing `CorelMate.UI.dll` and package-local PowerShell install/remove scripts. The scripts use the verified COM API for the current CorelDRAW session. Do not generate a guessed `.addon` file.
+
+Alternatives: Invent an XML/.addon package, modify CorelDRAW installation files, use registry hacks, or run a background startup process.
+
+Reason: The ZIP uses an observed API and tested artifact path without unsupported startup behavior or host modification.
+
+Consequences: Users must run the package installer for a session; automatic startup is a documented limitation and remains a future research task.
+
+Verification: Clean release build/package passed; extracted package install showed the Docker in CorelDRAW 27.1 and package uninstall removed it.

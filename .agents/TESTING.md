@@ -1,0 +1,3 @@
+# Testing
+
+The current executable smoke test checks a pure badge grid calculation and passes with .NET 10 without CorelDRAW. The solution also builds successfully against the locally installed CorelDRAW interop assemblies. On 2026-09-16, CorelDRAW 27.1.0.129 displayed the WPF Docker after `AddDocker`; `IsDockerVisible` passed after show, hide, and reopen. A screenshot confirmed the required status text. Automatic startup packaging and GUI assertions across a fresh user profile remain unverified.

@@ -1,0 +1,3 @@
+# Architecture
+
+The solution separates pure logic (`CorelMate.Core`, `Badges`, `Curves`, `AI`, `Infrastructure`) from the Windows/CorelDRAW boundary (`Host`) and the Docker UI (`UI`). `Host` is the only project referencing the Corel interop assemblies. The verified Docker path is `CorelDRAW.Application.FrameWork.AddDocker` with a public parameterless WPF `UserControl` class from a .NET Framework 4.8 assembly. The developer bootstrap invokes that API through CorelDRAW COM automation; it does not modify CorelDRAW installation files. No feature currently mutates a document.

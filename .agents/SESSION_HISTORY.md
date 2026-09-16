@@ -48,3 +48,11 @@
 - Verified: quoted/escaped/multiline CSV, Unicode, duplicate/missing headers, extra columns, invalid quantities, blank rows, XLSX first worksheet, build, and existing regressions.
 - Verified: real v27.1 CSV-to-generator bridge imported three rows and generated 11 badges through the existing engine.
 - Unverified: foreground WPF file-picker/import interaction and real XLSX-to-CorelDRAW generation.
+
+## 2026-09-16 - Task 8 Badge Generator QA
+
+- Goal: audit and harden the existing Badge Generator without redesigning its architecture or adding features.
+- Finding: failed master capture/import could leave stale row editors visible; Reset did not clear Curves result feedback.
+- Changed: clear row/layout/result state on failed capture/import/reset while preserving CorelDRAW artwork.
+- Verified: build/tests/release package; real v27.1 manual adapter generation of 11 badges, invalid preflight rejection, master preservation, Undo, and Redo.
+- Unverified: foreground WPF click workflow, file picker, real XLSX generation, document switching, and 500/1000 performance.

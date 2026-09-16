@@ -13,3 +13,4 @@
 - Convert Text to Curves special containers, symbols, text-on-path, and full button-driven confirmation remain unverified.
 - Real foreground CSV/XLSX file-picker interaction is unverified; synthetic parser/mapping tests pass.
 - XLSX uses the first worksheet and does not evaluate formulas or preserve spreadsheet formatting.
+- Task 8 did not verify click-by-click WPF file-picker interaction because foreground desktop automation is unreliable in this environment.

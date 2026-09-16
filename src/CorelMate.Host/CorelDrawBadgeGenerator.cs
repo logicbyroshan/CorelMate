@@ -12,8 +12,9 @@ namespace CorelMate.Host;
 
 public sealed class CorelBadgeMaster
 {
-    internal CorelBadgeMaster(CorelShapeRange selection, CorelPage page, double widthMillimeters, double heightMillimeters, double pageWidthMillimeters, double pageHeightMillimeters, IReadOnlyList<string> variables)
+    internal CorelBadgeMaster(CorelDocument document, CorelShapeRange selection, CorelPage page, double widthMillimeters, double heightMillimeters, double pageWidthMillimeters, double pageHeightMillimeters, IReadOnlyList<string> variables)
     {
+        Document = document;
         Selection = selection;
         Page = page;
         WidthMillimeters = widthMillimeters;
@@ -23,6 +24,7 @@ public sealed class CorelBadgeMaster
         Variables = variables;
     }
 
+    internal CorelDocument Document { get; }
     internal CorelShapeRange Selection { get; }
     internal CorelPage Page { get; }
     public double WidthMillimeters { get; }
@@ -59,9 +61,9 @@ public sealed class CorelDrawBadgeGenerator
 
         var variables = new List<string>();
         foreach (var shape in EnumerateShapes(selection.Shapes)) CollectVariables(shape, variables);
-        if (variables.Count == 0) throw new InvalidOperationException("The selected artwork contains no valid {{VARIABLE}} placeholders.");
+        if (variables.Count == 0) throw new InvalidOperationException("No dynamic variables were found in the selected artwork.");
 
-        return new CorelBadgeMaster(selection, page, document.ToUnits(selection.SizeWidth, cdrUnit.cdrMillimeter), document.ToUnits(selection.SizeHeight, cdrUnit.cdrMillimeter), document.ToUnits(page.SizeWidth, cdrUnit.cdrMillimeter), document.ToUnits(page.SizeHeight, cdrUnit.cdrMillimeter), variables);
+        return new CorelBadgeMaster(document, selection, page, document.ToUnits(selection.SizeWidth, cdrUnit.cdrMillimeter), document.ToUnits(selection.SizeHeight, cdrUnit.cdrMillimeter), document.ToUnits(page.SizeWidth, cdrUnit.cdrMillimeter), document.ToUnits(page.SizeHeight, cdrUnit.cdrMillimeter), variables);
     }
 
     public CorelBadgeGenerationResult Generate(CorelBadgeMaster master, BadgeLayoutSettings settings, IReadOnlyList<BadgeDataRow> rows)
@@ -70,6 +72,7 @@ public sealed class CorelDrawBadgeGenerator
         if (settings == null) throw new ArgumentNullException(nameof(settings));
         if (rows == null) throw new ArgumentNullException(nameof(rows));
         var document = RequireDocument();
+        if (!ReferenceEquals(document, master.Document)) throw new InvalidOperationException("Master artwork is no longer available. Please select it again.");
         var total = 0;
         foreach (var row in rows)
         {

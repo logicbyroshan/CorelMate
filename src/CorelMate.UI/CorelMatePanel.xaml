@@ -12,20 +12,31 @@
       <TextBlock Margin="0,16,0,4" Text="Variables" FontWeight="Bold" />
       <TextBlock x:Name="VariablesText" Text="None detected" TextWrapping="Wrap" />
       <TextBlock Margin="0,16,0,4" Text="Data rows" FontWeight="Bold" />
-      <TextBlock Text="One row per line: values in variable order, then quantity. Example: MONITOR|NURSERY|2" TextWrapping="Wrap" FontSize="11" />
-      <TextBox x:Name="RowsText" Margin="0,6,0,0" Height="90" AcceptsReturn="True" VerticalScrollBarVisibility="Auto" Text="MONITOR|NURSERY|2" />
+      <ScrollViewer MaxHeight="220" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
+        <StackPanel x:Name="RowsPanel" />
+      </ScrollViewer>
+      <StackPanel Orientation="Horizontal" Margin="0,6,0,0">
+        <Button x:Name="AddRowButton" Padding="8,4" Content="Add Row" Click="AddRowButton_Click" IsEnabled="False" />
+        <Button x:Name="DeleteRowButton" Margin="6,0,0,0" Padding="8,4" Content="Delete Last Row" Click="DeleteRowButton_Click" IsEnabled="False" />
+      </StackPanel>
       <TextBlock Margin="0,16,0,4" Text="Layout (millimeters)" FontWeight="Bold" />
       <Grid>
         <Grid.ColumnDefinitions><ColumnDefinition /><ColumnDefinition /></Grid.ColumnDefinitions>
         <Grid.RowDefinitions><RowDefinition /><RowDefinition /><RowDefinition /><RowDefinition /><RowDefinition /><RowDefinition /></Grid.RowDefinitions>
-        <TextBlock Grid.Row="0" Text="Badge width" Margin="0,3" /><TextBox x:Name="BadgeWidthText" Grid.Row="0" Grid.Column="1" Margin="4,2" />
-        <TextBlock Grid.Row="1" Text="Badge height" Margin="0,3" /><TextBox x:Name="BadgeHeightText" Grid.Row="1" Grid.Column="1" Margin="4,2" />
-        <TextBlock Grid.Row="2" Text="Horizontal gap" Margin="0,3" /><TextBox x:Name="HorizontalGapText" Grid.Row="2" Grid.Column="1" Margin="4,2" Text="3" />
-        <TextBlock Grid.Row="3" Text="Vertical gap" Margin="0,3" /><TextBox x:Name="VerticalGapText" Grid.Row="3" Grid.Column="1" Margin="4,2" Text="3" />
-        <TextBlock Grid.Row="4" Text="Left / right margin" Margin="0,3" /><TextBox x:Name="HorizontalMarginText" Grid.Row="4" Grid.Column="1" Margin="4,2" Text="5" />
-        <TextBlock Grid.Row="5" Text="Top / bottom margin" Margin="0,3" /><TextBox x:Name="VerticalMarginText" Grid.Row="5" Grid.Column="1" Margin="4,2" Text="5" />
+        <TextBlock Grid.Row="0" Text="Badge width" Margin="0,3" /><TextBox x:Name="BadgeWidthText" Grid.Row="0" Grid.Column="1" Margin="4,2" TextChanged="LayoutTextChanged" />
+        <TextBlock Grid.Row="1" Text="Badge height" Margin="0,3" /><TextBox x:Name="BadgeHeightText" Grid.Row="1" Grid.Column="1" Margin="4,2" TextChanged="LayoutTextChanged" />
+        <TextBlock Grid.Row="2" Text="Horizontal gap" Margin="0,3" /><TextBox x:Name="HorizontalGapText" Grid.Row="2" Grid.Column="1" Margin="4,2" Text="3" TextChanged="LayoutTextChanged" />
+        <TextBlock Grid.Row="3" Text="Vertical gap" Margin="0,3" /><TextBox x:Name="VerticalGapText" Grid.Row="3" Grid.Column="1" Margin="4,2" Text="3" TextChanged="LayoutTextChanged" />
+        <TextBlock Grid.Row="4" Text="Left / right margin" Margin="0,3" /><TextBox x:Name="HorizontalMarginText" Grid.Row="4" Grid.Column="1" Margin="4,2" Text="5" TextChanged="LayoutTextChanged" />
+        <TextBlock Grid.Row="5" Text="Top / bottom margin" Margin="0,3" /><TextBox x:Name="VerticalMarginText" Grid.Row="5" Grid.Column="1" Margin="4,2" Text="5" TextChanged="LayoutTextChanged" />
       </Grid>
-      <Button x:Name="GenerateButton" Margin="0,16,0,0" Padding="8,4" Content="Generate Badges" Click="GenerateButton_Click" IsEnabled="False" />
+      <TextBlock Margin="0,16,0,4" Text="Preview" FontWeight="Bold" />
+      <TextBlock x:Name="PreviewText" Text="Capture a master to preview the layout." TextWrapping="Wrap" />
+      <StackPanel Orientation="Horizontal" Margin="0,16,0,0">
+        <Button x:Name="PreviewButton" Padding="8,4" Content="Preview" Click="PreviewButton_Click" IsEnabled="False" />
+        <Button x:Name="GenerateButton" Margin="6,0,0,0" Padding="8,4" Content="Generate Badges" Click="GenerateButton_Click" IsEnabled="False" />
+        <Button x:Name="ResetButton" Margin="6,0,0,0" Padding="8,4" Content="Reset" Click="ResetButton_Click" />
+      </StackPanel>
       <TextBlock x:Name="ResultText" Margin="0,8,0,0" TextWrapping="Wrap" />
     </StackPanel>
   </ScrollViewer>

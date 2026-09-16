@@ -12,5 +12,6 @@
 - CorelDRAW reported the Docker GUID visible after a fresh launch following removal, but the content could not be visually confirmed; treat this as ambiguous persisted workspace state, not verified automatic addon startup.
 - Release packaging currently needs to be rerun and inspected after adding Host/Badges/Infrastructure dependencies to the Docker.
 - The WPF UI catches and displays exception messages but does not yet route technical exceptions through a real structured logger.
+- Desktop automation could not foreground CorelDRAW reliably for click-by-click WPF testing; do not claim the full UI workflow until manually verified.
 
 These findings are recorded only; bootstrap does not fix them.

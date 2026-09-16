@@ -13,3 +13,4 @@ Updated 2026-09-16 during bootstrap.
 - Badge generation, curves, AI, production installer, licensing, and secure credential storage are unfinished.
 - Task 4 now has a pure badge engine and initial CorelDRAW adapter; complete interactive UI validation remains pending.
 - The direct adapter passed a real v27.1 temporary-document generation test; the WPF button-driven workflow and visual screenshot remain unverified.
+- Task 5 added dynamic WPF rows, preview, reset, validation, and busy-state protection; 100-badge and undo/redo adapter tests passed.

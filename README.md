@@ -24,6 +24,7 @@ Currently available:
 - WPF Docker hosted through CorelDRAW's `FrameWork.AddDocker` API.
 - Generic Badge Generator with `{{VARIABLE}}` placeholders, dynamic rows, quantities, millimeter layout, preview, and multi-page generation.
 - Native Convert Text to Curves workflow for selected artistic and paragraph text.
+- Local CSV and XLSX import mapped into the same normalized Badge Generator rows as manual entry.
 - Host-independent smoke tests and a reproducible release ZIP workflow.
 
 Still limited or unverified:
@@ -31,7 +32,7 @@ Still limited or unverified:
 - Automatic `.addon` startup registration is not verified for .NET assemblies on v27.1.
 - Full click-by-click Docker UI validation requires a foreground CorelDRAW session.
 - Special containers, symbols, and text-on-path behavior need further testing.
-- AI, Excel/CSV import, licensing, telemetry, and installer redesign are not part of the current release.
+- AI, licensing, telemetry, and installer redesign are not part of the current release.
 
 Do not use the pre-1.0 build for destructive artwork workflows without testing against a copy of the document.
 
@@ -50,6 +51,10 @@ Create one master badge in CorelDRAW, select it, and generate copies from manual
 ### Convert Text to Curves
 
 Preflights the current selection, reports convertible/locked/hidden text, asks for confirmation, and calls CorelDRAW's native `Shape.ConvertToCurves()` operation. Unrelated rectangles, images, and other vector objects are not flattened.
+
+### CSV / XLSX Import
+
+After capturing a master, choose **Import CSV / XLSX** in the Badge Generator. CorelMate reads the first worksheet for XLSX, detects headers case-insensitively, maps headers to detected placeholders, recognizes `QUANTITY` or `QTY`, reports unused columns, and validates the complete dataset before CorelDRAW is changed. CSV parsing supports quoted commas, escaped quotes, multiline fields, UTF-8, CRLF, and LF.
 
 ## Architecture
 
@@ -98,6 +103,8 @@ dotnet run --project .\tests\CorelMate.Tests\CorelMate.Tests.csproj -c Release
 ```
 
 The smoke test covers pure placeholder, quantity, layout, and conversion-summary behavior. It does not replace a real CorelDRAW integration test.
+
+Import parsers and mapping are covered with synthetic CSV/XLSX data, including Unicode and invalid-data cases. No real personal/student datasets are stored in the repository.
 
 ## Development Docker
 

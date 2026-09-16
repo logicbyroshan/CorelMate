@@ -7,3 +7,5 @@ The release path packages the WPF UI and its managed Host/Badges/Infrastructure 
 The hardened WPF workflow maintains captured-master state, dynamically creates one input column per detected variable plus quantity, recalculates a pure preview, validates rows before mutation, disables mutation controls while generating, and provides Reset without deleting CorelDRAW artwork. COM mutation remains synchronous on the CorelDRAW context.
 
 Convert Text to Curves uses the same materialized `CorelShapeTraversal` in `CorelMate.Host`. `CorelTextToCurvesConverter` performs a no-mutation preflight, then calls CorelDRAW's native `Shape.ConvertToCurves()` for supported selected text inside one command group.
+
+Task 7 import sources remain in `CorelMate.Badges` and terminate at existing `BadgeDataRow` values. CSV/XLSX parsing and validation do not reference CorelDRAW. The WPF panel replaces the same manual row editors used by Badge Generator, so imported and manually entered data share the existing generation path.

@@ -40,3 +40,11 @@
 - Changed: added shared materialized shape traversal, Curves summary model, Host preflight/converter, WPF confirmation/result controls, and Curves regression coverage.
 - Verified: v27.1 artistic/grouped conversion, paragraph conversion, rectangle preservation, locked/hidden classification, and command-group undo/redo.
 - Unverified: special containers, symbols, text-on-path, full WPF confirmation clicks, and large text-selection performance.
+
+## 2026-09-16 - Task 7 Excel / CSV Import
+
+- Goal: add local CSV/XLSX import without rewriting Badge Generator or using Excel COM.
+- Changed: added dependency-free CSV and Open XML XLSX sources, header normalization/mapping, duplicate/missing/extra-column handling, row/quantity validation, Unicode support, WPF import action, and synthetic regression tests.
+- Verified: quoted/escaped/multiline CSV, Unicode, duplicate/missing headers, extra columns, invalid quantities, blank rows, XLSX first worksheet, build, and existing regressions.
+- Verified: real v27.1 CSV-to-generator bridge imported three rows and generated 11 badges through the existing engine.
+- Unverified: foreground WPF file-picker/import interaction and real XLSX-to-CorelDRAW generation.

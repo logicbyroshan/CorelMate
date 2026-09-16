@@ -9,3 +9,4 @@
 - Tests are a dependency-free .NET 10 executable until the host-independent test suite grows enough to justify a framework.
 - `scripts/Build-Release.ps1` creates a validated ZIP package without debug symbols or Corel-owned interop redistribution.
 - Public documentation uses Markdown and the canonical PNG brand asset at `assets/brand/corelmate-logo.png`.
+- CSV uses an internal standards-aware parser; XLSX uses `System.IO.Compression` and LINQ to XML against the Open XML package. No Excel installation, Office interop, or new third-party dependency is required.

@@ -17,3 +17,5 @@
 - [x] Implement native Convert Text to Curves preflight, traversal, conversion, and command grouping.
 - [x] Verify artistic/grouped conversion, paragraph conversion, locked/hidden classification, and undo/redo through the adapter.
 - [ ] Verify the full WPF Curves confirmation workflow and special containers/text-on-path behavior.
+- [x] Add CSV/XLSX parsing, header mapping, normalized rows, and pre-generation validation.
+- [ ] Verify the WPF file-picker/import workflow in a foreground CorelDRAW session.

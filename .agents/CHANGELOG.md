@@ -41,6 +41,13 @@
 - Verified artistic/grouped and paragraph conversion plus locked/hidden reporting and undo/redo in CorelDRAW 27.1.
 - Documented special-container and interactive UI limitations.
 
+## 0.1.0 - 2026-09-16 - Task 7
+
+- Added dependency-free CSV and XLSX import sources.
+- Added case-insensitive header mapping, duplicate/missing-column validation, extra-column reporting, Unicode support, and normalized BadgeDataRow output.
+- Added WPF import action without creating a second generation pipeline.
+- Added synthetic import regression coverage and documented real-host import limitations.
+
 ## 0.1.0 - 2026-09-16 - Project Branding And Open-Source Documentation
 
 - Added the canonical CorelMate logo under `assets/brand/corelmate-logo.png`.

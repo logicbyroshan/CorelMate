@@ -1,0 +1,3 @@
+# CorelMate Agent Documentation
+
+This directory is the project memory and operating manual for human and AI contributors. Before changing code, read `PROJECT.md`, `CURRENT_STATE.md`, `DEVELOPMENT_RULES.md`, `ARCHITECTURE.md`, `DECISIONS.md`, and `TASKS.md`. Keep verified facts separate from proposals, append history rather than rewriting it, and never claim CorelDRAW behavior without testing against the installed host.

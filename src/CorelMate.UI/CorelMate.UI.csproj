@@ -1,0 +1,3 @@
+<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
+  <PropertyGroup><TargetFramework>net48</TargetFramework><UseWPF>true</UseWPF><RootNamespace>CorelMate.UI</RootNamespace></PropertyGroup>
+</Project>

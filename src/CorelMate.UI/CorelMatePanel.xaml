@@ -1,0 +1,15 @@
+<UserControl x:Class="CorelMate.UI.CorelMatePanel"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             MinWidth="220"
+             MinHeight="180">
+  <StackPanel Margin="16">
+    <TextBlock Text="CORELMATE" FontWeight="Bold" FontSize="16" />
+    <TextBlock Margin="0,16,0,0" Text="CorelMate loaded successfully." />
+    <TextBlock Margin="0,12,0,0" Text="CorelDRAW:" />
+    <TextBlock x:Name="TargetVersion" />
+    <TextBlock Margin="0,8,0,0" Text="Integration: Connected" />
+    <TextBlock Text="Version: 0.1.0" />
+    <TextBlock Text="Status: Ready" />
+  </StackPanel>
+</UserControl>

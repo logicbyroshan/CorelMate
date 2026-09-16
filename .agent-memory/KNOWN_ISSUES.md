@@ -13,5 +13,6 @@
 - Release packaging currently needs to be rerun and inspected after adding Host/Badges/Infrastructure dependencies to the Docker.
 - The WPF UI catches and displays exception messages but does not yet route technical exceptions through a real structured logger.
 - Desktop automation could not foreground CorelDRAW reliably for click-by-click WPF testing; do not claim the full UI workflow until manually verified.
+- Convert Text to Curves special containers, symbols, text-on-path, and interactive confirmation remain unverified.
 
 These findings are recorded only; bootstrap does not fix them.

@@ -10,3 +10,4 @@
 - Multi-page creation and rollback code exists but has not been validated with overflow artwork in the real host.
 - Desktop automation could not foreground CorelDRAW reliably for click-by-click WPF testing; do not claim the full UI workflow until manually verified.
 - 100 badges passed in about 9 seconds; 500 and 1000 badge performance remains unverified.
+- Convert Text to Curves special containers, symbols, text-on-path, and full button-driven confirmation remain unverified.

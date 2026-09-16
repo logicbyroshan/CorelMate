@@ -14,3 +14,4 @@ Updated 2026-09-16 during bootstrap.
 - Task 4 now has a pure badge engine and initial CorelDRAW adapter; complete interactive UI validation remains pending.
 - The direct adapter passed a real v27.1 temporary-document generation test; the WPF button-driven workflow and visual screenshot remain unverified.
 - Task 5 added dynamic WPF rows, preview, reset, validation, and busy-state protection; 100-badge and undo/redo adapter tests passed.
+- Task 6 adds native Convert Text to Curves through shared Host traversal; real artistic, paragraph, locked/hidden, and undo/redo checks passed.

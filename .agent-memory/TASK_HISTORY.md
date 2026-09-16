@@ -79,3 +79,17 @@ Important decisions: Keep Corel mutations synchronous and preview pure; do not i
 Testing performed: Build/tests passed. Real CorelDRAW 27.1 generated 100 badges over 5 pages in about 9 seconds; missing-value preflight rejected; grouped generation undo/redo restored shape counts.
 
 Follow-up: Manually verify the WPF buttons and formatting/large-quantity behavior in a foreground CorelDRAW session.
+
+## 2026-09-16: Task 6 Convert Text to Curves
+
+Task: Implement selection-scoped Convert Text to Curves.
+
+Reason: Add the second major CorelMate feature using CorelDRAW's native object model without flattening unrelated artwork.
+
+Files/areas affected: `CorelMate.Curves`, `CorelMate.Host`, `CorelMate.UI`, tests, packaging, and documentation.
+
+What changed: Added shared planned traversal, preflight summary, locked/hidden classification, native `Shape.ConvertToCurves()`, command grouping, WPF confirmation/result controls, and Curves regression coverage.
+
+Testing performed: Build/tests passed. CorelDRAW 27.1 verified grouped artistic conversion, paragraph conversion, non-text preservation, locked/hidden counts, and Undo/Redo.
+
+Follow-up: Verify WPF confirmation clicks and special containers/text-on-path before claiming full feature coverage.

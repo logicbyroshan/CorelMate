@@ -7,3 +7,5 @@ Task 3 packaging details are recorded in [.agents/CHANGELOG.md](.agents/CHANGELO
 Task 4 Badge Generator details are recorded in [.agents/CHANGELOG.md](.agents/CHANGELOG.md).
 
 Task 5 workflow hardening details are recorded in [.agents/CHANGELOG.md](.agents/CHANGELOG.md).
+
+Task 6 Convert Text to Curves details are recorded in [.agents/CHANGELOG.md](.agents/CHANGELOG.md).

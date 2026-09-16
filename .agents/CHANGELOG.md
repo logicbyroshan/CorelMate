@@ -33,3 +33,10 @@
 - Added active-document stale-master protection and friendly UI error handling.
 - Verified real v27.1 100-badge multi-page generation and grouped undo/redo behavior.
 - Documented remaining interactive UI and formatting verification limits.
+
+## 0.1.0 - 2026-09-16 - Task 6
+
+- Added shared recursive Corel shape traversal and native Convert Text to Curves preflight/conversion.
+- Added WPF confirmation/result controls for selected text conversion.
+- Verified artistic/grouped and paragraph conversion plus locked/hidden reporting and undo/redo in CorelDRAW 27.1.
+- Documented special-container and interactive UI limitations.

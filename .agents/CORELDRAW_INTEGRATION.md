@@ -35,7 +35,7 @@ The installed CorelDRAW suite contains native addon directories under `Programs6
 
 ## Release package
 
-`scripts\Build-Release.ps1` produces `artifacts\CorelMate-0.1.0-docker.zip`. The package contains `CorelMate.UI.dll`, the verified .NET Framework 4.8 WPF Docker assembly, package-local session install/remove scripts, and a README. It deliberately excludes `Corel.Interop.CorelDRAW.dll` and `Corel.Interop.VGCore.dll`; CorelDRAW supplies those Corel-owned host assemblies. Source, tests, PDBs, local configuration, and developer scripts are also excluded.
+`scripts\Build-Release.ps1` produces `artifacts\CorelMate-0.1.0-docker.zip`. The package contains `CorelMate.UI.dll`, `CorelMate.Host.dll`, `CorelMate.Badges.dll`, `CorelMate.Infrastructure.dll`, `CorelMate.Core.dll`, package-local session install/remove scripts, and a README. It deliberately excludes `Corel.Interop.CorelDRAW.dll` and `Corel.Interop.VGCore.dll`; CorelDRAW supplies those Corel-owned host assemblies. Source, tests, PDBs, local configuration, and developer scripts are also excluded.
 
 Release validation checks required files, prohibited assemblies, debug/development artifacts, secrets, and absolute developer paths. The package-local installer was tested from a temporary extracted directory against CorelDRAW 27.1.0.129: the Docker became visible, then the package-local uninstaller removed it. This verifies session installation only, not startup after a fresh CorelDRAW launch.
 

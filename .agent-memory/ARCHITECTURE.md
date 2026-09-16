@@ -12,6 +12,8 @@
 
 `ICorelDrawHost` exposes the application and active document/page/layer/selection through a narrow host adapter, but feature code must not spread raw COM objects. No current feature mutates CorelDRAW artwork. Settings and logging are abstractions only.
 
+Badge generation keeps placeholder parsing, row validation, and millimeter layout in `CorelMate.Badges`. `CorelMate.Host.CorelDrawBadgeGenerator` owns selected-shape traversal, native duplication, text replacement, page creation, unit conversion, and Corel command grouping. The WPF panel owns only manual row/layout input and user-facing status.
+
 ## Packaging Boundary
 
 The installed suite contains native addon folders with DLLs and zero-byte `.addon` markers. CorelMate has not verified automatic startup registration for a .NET assembly; the current reproducible path is developer COM bootstrap, not a production addon package.

@@ -47,3 +47,19 @@ Important decisions: Do not invent a `.addon` schema or automatic .NET startup m
 Testing performed: Release package build passed; extracted package install made the Docker visible in CorelDRAW 27.1.0.129; package uninstall removed it. A subsequent fresh-launch visibility query returned true, but rendered/functioning automatic startup was not confirmed.
 
 Follow-up: Resolve whether the fresh-launch state is supported CorelDRAW workspace persistence or an official addon mechanism before claiming automatic startup.
+
+## 2026-09-16: Task 4 Badge Generator
+
+Task: Implement generic badge planning and the first CorelDRAW generation adapter.
+
+Reason: Start the first product feature while preserving the verified WPF/host boundary.
+
+Files/areas affected: `CorelMate.Badges`, `CorelMate.Host`, `CorelMate.UI`, tests, and documentation.
+
+What changed: Added strict generic placeholders, dictionary-backed data rows, millimeter layout/page planning, recursive grouped-shape inspection, native duplicate/move, Corel text replacement, page creation, command grouping, and manual WPF controls.
+
+Important decisions: Keep calculations pure; use native Corel object-model duplication instead of clipboard; preserve the selected master; use Corel's text replacement API for formatting preservation.
+
+Testing performed: Pure smoke tests passed. Real CorelDRAW 27.1 temporary-document test generated three copies from a grouped master with two placeholders.
+
+Follow-up: Test the WPF workflow interactively, overflow pages, undo/redo, formatting preservation, and rerun release packaging with all managed dependencies.

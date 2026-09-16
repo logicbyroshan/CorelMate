@@ -33,7 +33,7 @@ powershell -ExecutionPolicy Bypass -File .\scripts\Uninstall-Dev.ps1
 powershell -ExecutionPolicy Bypass -File .\scripts\Build-Release.ps1
 ```
 
-This cleans generated output, restores, builds without debug symbols, runs the smoke test, validates package contents, and creates `artifacts\CorelMate-0.1.0-docker.zip`. The ZIP contains `CorelMate.UI.dll` and package-local session install/remove scripts. It excludes Corel-owned interop assemblies, source, tests, PDBs, and developer configuration.
+This cleans generated output, restores, builds without debug symbols, runs the smoke test, validates package contents, and creates `artifacts\CorelMate-0.1.0-docker.zip`. The ZIP contains the WPF UI plus its CorelMate managed dependencies and package-local session install/remove scripts. It excludes Corel-owned interop assemblies, source, tests, PDBs, and developer configuration.
 
 Extract the ZIP and run `Install-CorelMate.ps1` to register the Docker for the current CorelDRAW session. Run `Uninstall-CorelMate.ps1` to remove it. Automatic startup through a CorelDRAW `.addon` package is not claimed because the .NET startup mechanism is not verified for v27.1.
 

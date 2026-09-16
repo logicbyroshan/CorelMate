@@ -2,7 +2,7 @@
 
 ## Project
 
-CorelMate is a Windows-first CorelDRAW productivity addon foundation. It targets CorelDRAW Graphics Suite 2026/v27 and currently provides a verified WPF Docker shell plus host-independent scaffolding for future badge generation, text-to-curves, and AI features. Feature implementation is intentionally incomplete.
+CorelMate is a Windows-first CorelDRAW productivity addon. It targets CorelDRAW Graphics Suite 2026/v27 and currently provides a verified WPF Docker, a generic Badge Generator, and a native Convert Text to Curves workflow. AI remains an abstraction-only future feature.
 
 ## Source Of Truth
 
@@ -21,6 +21,7 @@ Before meaningful work, read this file and the relevant `.agent-memory` files, t
 - `src/CorelMate.Host`: the only CorelDRAW/VGCore interop boundary and host adapter.
 - `tests/CorelMate.Tests`: dependency-free .NET 10 executable smoke test.
 - `scripts`: developer COM bootstrap and current-session Docker removal scripts.
+- `assets/brand`: canonical project logo and future brand assets.
 - `.agents`: existing CorelDRAW/project documentation.
 - `.agent-memory`: persistent agent audit, decisions, risks, and task history.
 
@@ -52,6 +53,7 @@ The host project contains a machine-specific CorelDRAW SDK `HintPath`; verify th
 - Tests are currently executable smoke tests with explicit assertions; do not claim CorelDRAW behavior from them.
 - Keep CorelDRAW object-model access in `CorelMate.Host`; expose only narrow abstractions to feature code.
 - Do not add dependencies or invent formatting conventions without recording the reason.
+- Use `assets/brand/corelmate-logo.png` as the canonical logo path in repository documentation; do not duplicate or rename it casually.
 
 ## Safety And Security
 
@@ -86,4 +88,4 @@ Before pushing, inspect `git status`, the diff, secrets, branch name, and remote
 
 ## Documentation Rules
 
-For meaningful work, update the relevant `.agent-memory` files, append concise task history, and update the existing root `CHANGELOG.md` through the mandatory PR workflow. Do not rewrite historical entries. Keep `CURRENT_STATE.md`, architecture, decisions, known issues, and changelog consistent. Never store secrets in memory.
+For meaningful work, update the relevant `.agent-memory` files, append concise task history, and update the existing root `CHANGELOG.md` through the mandatory PR workflow. Do not rewrite historical entries. Keep `CURRENT_STATE.md`, architecture, decisions, known issues, and changelog consistent. Never store secrets in memory. Keep public project documentation, contribution guidance, security policy, license, and branding assets synchronized.

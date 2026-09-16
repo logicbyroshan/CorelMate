@@ -1,15 +1,32 @@
 <UserControl x:Class="CorelMate.UI.CorelMatePanel"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             MinWidth="220"
-             MinHeight="180">
-  <StackPanel Margin="16">
-    <TextBlock Text="CORELMATE" FontWeight="Bold" FontSize="16" />
-    <TextBlock Margin="0,16,0,0" Text="CorelMate loaded successfully." />
-    <TextBlock Margin="0,12,0,0" Text="CorelDRAW:" />
-    <TextBlock x:Name="TargetVersion" />
-    <TextBlock Margin="0,8,0,0" Text="Integration: Connected" />
-    <TextBlock Text="Version: 0.1.0" />
-    <TextBlock Text="Status: Ready" />
-  </StackPanel>
+             MinWidth="280"
+             MinHeight="520">
+  <ScrollViewer VerticalScrollBarVisibility="Auto">
+    <StackPanel Margin="16">
+      <TextBlock Text="CORELMATE" FontWeight="Bold" FontSize="16" />
+      <TextBlock Margin="0,12,0,0" Text="BADGE GENERATOR" FontWeight="Bold" />
+      <Button x:Name="UseSelectedButton" Margin="0,12,0,0" Padding="8,4" Content="Use Selected Artwork" Click="UseSelectedButton_Click" />
+      <TextBlock x:Name="StatusText" Margin="0,8,0,0" Text="Select a master badge in CorelDRAW." TextWrapping="Wrap" />
+      <TextBlock Margin="0,16,0,4" Text="Variables" FontWeight="Bold" />
+      <TextBlock x:Name="VariablesText" Text="None detected" TextWrapping="Wrap" />
+      <TextBlock Margin="0,16,0,4" Text="Data rows" FontWeight="Bold" />
+      <TextBlock Text="One row per line: values in variable order, then quantity. Example: MONITOR|NURSERY|2" TextWrapping="Wrap" FontSize="11" />
+      <TextBox x:Name="RowsText" Margin="0,6,0,0" Height="90" AcceptsReturn="True" VerticalScrollBarVisibility="Auto" Text="MONITOR|NURSERY|2" />
+      <TextBlock Margin="0,16,0,4" Text="Layout (millimeters)" FontWeight="Bold" />
+      <Grid>
+        <Grid.ColumnDefinitions><ColumnDefinition /><ColumnDefinition /></Grid.ColumnDefinitions>
+        <Grid.RowDefinitions><RowDefinition /><RowDefinition /><RowDefinition /><RowDefinition /><RowDefinition /><RowDefinition /></Grid.RowDefinitions>
+        <TextBlock Grid.Row="0" Text="Badge width" Margin="0,3" /><TextBox x:Name="BadgeWidthText" Grid.Row="0" Grid.Column="1" Margin="4,2" />
+        <TextBlock Grid.Row="1" Text="Badge height" Margin="0,3" /><TextBox x:Name="BadgeHeightText" Grid.Row="1" Grid.Column="1" Margin="4,2" />
+        <TextBlock Grid.Row="2" Text="Horizontal gap" Margin="0,3" /><TextBox x:Name="HorizontalGapText" Grid.Row="2" Grid.Column="1" Margin="4,2" Text="3" />
+        <TextBlock Grid.Row="3" Text="Vertical gap" Margin="0,3" /><TextBox x:Name="VerticalGapText" Grid.Row="3" Grid.Column="1" Margin="4,2" Text="3" />
+        <TextBlock Grid.Row="4" Text="Left / right margin" Margin="0,3" /><TextBox x:Name="HorizontalMarginText" Grid.Row="4" Grid.Column="1" Margin="4,2" Text="5" />
+        <TextBlock Grid.Row="5" Text="Top / bottom margin" Margin="0,3" /><TextBox x:Name="VerticalMarginText" Grid.Row="5" Grid.Column="1" Margin="4,2" Text="5" />
+      </Grid>
+      <Button x:Name="GenerateButton" Margin="0,16,0,0" Padding="8,4" Content="Generate Badges" Click="GenerateButton_Click" IsEnabled="False" />
+      <TextBlock x:Name="ResultText" Margin="0,8,0,0" TextWrapping="Wrap" />
+    </StackPanel>
+  </ScrollViewer>
 </UserControl>

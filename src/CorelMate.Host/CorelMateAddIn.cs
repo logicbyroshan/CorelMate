@@ -1,8 +1,8 @@
 using System;
+using System.IO;
 using System.Runtime.InteropServices;
 using CorelApplication = Corel.Interop.CorelDRAW.Application;
 using CorelMate.Infrastructure;
-using CorelMate.UI;
 
 namespace CorelMate.Host;
 
@@ -29,7 +29,7 @@ public sealed class CorelMateAddIn
     public void RegisterDocker()
     {
         if (application == null) throw new InvalidOperationException("CorelMate has not been initialized with CorelDRAW.");
-        var assemblyPath = typeof(CorelMatePanel).Assembly.Location;
+        var assemblyPath = Path.Combine(Path.GetDirectoryName(typeof(CorelMateAddIn).Assembly.Location) ?? string.Empty, "CorelMate.UI.dll");
         application.FrameWork.AddDocker(DockerGuid, DockerClassName, assemblyPath);
         logger.Info("CorelMate Docker registered.");
     }
@@ -40,9 +40,4 @@ public sealed class CorelMateAddIn
         application.FrameWork.ShowDocker(DockerGuid);
     }
 
-    public CorelMatePanel CreatePanel()
-    {
-        var target = application == null ? "Not connected" : "2026 / v27";
-        return new CorelMatePanel(target);
-    }
 }

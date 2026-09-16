@@ -6,3 +6,5 @@
 - The host reference uses a machine-specific installed SDK path.
 - Badge generation, curves, AI, secure credentials, installer, and licensing are not implemented.
 - CorelDRAW-specific integration was run manually through COM on the installed host; repeatable automated GUI assertions are not yet present.
+- The direct CorelDRAW adapter has been exercised with a temporary grouped master, but the WPF button-driven workflow has not yet been tested end to end.
+- Multi-page creation and rollback code exists but has not been validated with overflow artwork in the real host.

@@ -19,3 +19,10 @@
 - Added package-local session install and uninstall scripts.
 - Added package validation for required files, debug artifacts, Corel-owned interop DLLs, secrets, and absolute paths.
 - Documented automatic `.addon` startup as unverified rather than inventing a package schema.
+
+## 0.1.0 - 2026-09-16 - Task 4
+
+- Added generic placeholder parsing, row validation, millimeter layout, page-fit, and multi-page planning.
+- Added CorelDRAW grouped-master capture, recursive placeholder discovery, native duplication, replacement, placement, and command grouping.
+- Added initial manual Badge Generator controls to the WPF Docker.
+- Recorded real CorelDRAW temporary-document verification and remaining interactive limitations.

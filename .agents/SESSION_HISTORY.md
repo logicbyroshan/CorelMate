@@ -18,3 +18,10 @@
 - Verified: clean release build, smoke test, package validation, extracted package installation, Docker visibility, and package uninstall against CorelDRAW 27.1.0.129.
 - Finding: shipped v27 `.addon` files are zero-byte markers beside native DLLs; no verified .NET startup schema or VSTA tooling is available locally.
 - Limitation: automatic startup after a fresh CorelDRAW launch remains unverified; no guessed `.addon` or registry workaround was added.
+
+## 2026-09-16 - Task 4 Badge Generator
+
+- Goal: implement the generic badge engine and initial CorelDRAW integration without adding AI, curves, or import features.
+- Changed: added placeholder parsing/replacement, generic data rows, millimeter layout and multi-page planning, recursive Corel shape traversal, native duplication/movement, text replacement, page creation, command grouping, and a manual WPF workflow.
+- Verified: pure parser/layout/validation smoke tests, Release compilation, and a real CorelDRAW 27.1 temporary-document test with grouped artistic text placeholders and three generated copies.
+- Not verified: full interactive WPF generation, formatting preservation across varied text, undo/redo behavior, overflow pages, large quantities, and release-package rerun after the new managed dependency set.

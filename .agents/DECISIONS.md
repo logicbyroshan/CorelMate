@@ -41,3 +41,19 @@ Reason: The ZIP uses an observed API and tested artifact path without unsupporte
 Consequences: Users must run the package installer for a session; automatic startup is a documented limitation and remains a future research task.
 
 Verification: Clean release build/package passed; extracted package install showed the Docker in CorelDRAW 27.1 and package uninstall removed it.
+
+## ADR-006: Generic Badge Generation Through A Pure Plan And Corel Adapter
+
+Status: Accepted for the Task 4 implementation; complete UI workflow remains only partially host-verified.
+
+Context: Badge generation must support arbitrary placeholder names, grouped artwork, quantities, millimeter layout, and multiple pages without coupling pure calculations to CorelDRAW.
+
+Decision: Keep placeholder parsing, row validation, layout fitting, and multi-page planning in `CorelMate.Badges`. Keep selection capture, recursive Corel shape traversal, native `ShapeRange.Duplicate`, text replacement, page creation, unit conversion, and command grouping in `CorelMate.Host`. Keep manual row entry and layout controls in the WPF Docker.
+
+Alternatives: Hard-code school badge fields, use clipboard copy/paste, put COM calls in WPF handlers, or rebuild text objects.
+
+Reason: The pure engine is testable and generic; the adapter uses verified v27 object-model APIs and preserves the master by duplicating the selected range.
+
+Consequences: Formatting preservation depends on Corel's native `Text.Replace`; Excel/CSV import and richer table editing remain future work.
+
+Verification: Pure tests pass. A real v27.1 temporary-document test captured a grouped master with `{{TITLE}}` and `{{STANDARD}}`, generated three copies, and retained the master.

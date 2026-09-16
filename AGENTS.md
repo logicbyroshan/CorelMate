@@ -13,7 +13,7 @@ Before meaningful work, read this file and the relevant `.agent-memory` files, t
 ## Repository Map
 
 - `src/CorelMate.Core`: settings and host-independent core concepts.
-- `src/CorelMate.Badges`: pure badge grid logic; no CorelDRAW dependency.
+- `src/CorelMate.Badges`: pure placeholder, row, and badge layout logic; no CorelDRAW dependency.
 - `src/CorelMate.Curves`: future text-to-curves contract; implementation is intentionally unsupported.
 - `src/CorelMate.AI`: provider abstraction only.
 - `src/CorelMate.Infrastructure`: logging abstractions and infrastructure seams.

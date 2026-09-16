@@ -11,3 +11,5 @@ Updated 2026-09-16 during bootstrap.
 - Automatic `.addon` startup registration remains unverified.
 - Task 3 produced and real-host-tested a session-install ZIP; a fresh-launch visibility query returned true after removal, but rendered/functioning automatic startup was not confirmed and may reflect persisted CorelDRAW workspace state.
 - Badge generation, curves, AI, production installer, licensing, and secure credential storage are unfinished.
+- Task 4 now has a pure badge engine and initial CorelDRAW adapter; complete interactive UI validation remains pending.
+- The direct adapter passed a real v27.1 temporary-document generation test; the WPF button-driven workflow and visual screenshot remain unverified.

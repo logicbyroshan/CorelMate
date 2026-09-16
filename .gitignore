@@ -18,3 +18,4 @@ local.settings.json
 logs/
 *.log
 CorelMate.local.json
+artifacts/

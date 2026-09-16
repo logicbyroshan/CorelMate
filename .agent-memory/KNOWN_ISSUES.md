@@ -9,5 +9,6 @@
 - The logger is a null implementation; structured logging is not implemented.
 - AI provider and settings abstractions do not persist secure credentials.
 - The empty initial Git history means this bootstrap must establish the first reviewable PR carefully.
+- CorelDRAW reported the Docker GUID visible after a fresh launch following removal, but the content could not be visually confirmed; treat this as ambiguous persisted workspace state, not verified automatic addon startup.
 
 These findings are recorded only; bootstrap does not fix them.

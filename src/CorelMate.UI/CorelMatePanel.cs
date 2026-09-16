@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Windows;
 using System.Windows.Controls;
+using Microsoft.Win32;
 using CorelMate.Badges;
 using CorelMate.Host;
 
@@ -109,6 +110,48 @@ public sealed partial class CorelMatePanel : UserControl
         RefreshPreview();
     }
 
+    private void ImportDataButton_Click(object sender, RoutedEventArgs e)
+    {
+        try
+        {
+            if (master == null) throw new InvalidOperationException("Capture the master artwork first.");
+            var dialog = new OpenFileDialog
+            {
+                Filter = "Data files (*.csv;*.xlsx)|*.csv;*.xlsx|CSV files (*.csv)|*.csv|Excel workbooks (*.xlsx)|*.xlsx",
+                CheckFileExists = true,
+                Multiselect = false
+            };
+            if (dialog.ShowDialog() != true) return;
+
+            var imported = string.Equals(System.IO.Path.GetExtension(dialog.FileName), ".xlsx", StringComparison.OrdinalIgnoreCase)
+                ? XlsxImportSource.Read(dialog.FileName)
+                : CsvImportSource.Read(dialog.FileName);
+            var validation = BadgeImportMapper.Validate(imported, master.Variables);
+            if (!validation.IsValid)
+            {
+                var count = Math.Min(validation.Errors.Count, 10);
+                var shownErrors = new List<string>();
+                for (var index = 0; index < count; index++) shownErrors.Add(validation.Errors[index]);
+                var message = "Import validation failed.\r\n\r\n" + string.Join("\r\n", shownErrors);
+                if (validation.Errors.Count > count) message += "\r\n\r\n" + validation.Errors.Count + " validation errors found.";
+                CurvesResultText.Text = string.Empty;
+                ResultText.Text = message;
+                StatusText.Text = "Import rejected; CorelDRAW was not modified.";
+                return;
+            }
+
+            ReplaceRows(validation.Rows);
+            var sourceLabel = string.IsNullOrWhiteSpace(imported.WorksheetName) ? imported.SourceName : imported.SourceName + " / " + imported.WorksheetName;
+            StatusText.Text = "Imported " + validation.Rows.Count + " rows from " + sourceLabel + ".";
+            ResultText.Text = "Mapped: " + string.Join(", ", validation.UsedColumns) + (validation.UnusedColumns.Count == 0 ? string.Empty : "\r\nUnused: " + string.Join(", ", validation.UnusedColumns));
+            RefreshPreview();
+        }
+        catch (Exception exception)
+        {
+            ShowFriendlyError(exception);
+        }
+    }
+
     private void PreviewButton_Click(object sender, RoutedEventArgs e)
     {
         try
@@ -211,6 +254,33 @@ public sealed partial class CorelMatePanel : UserControl
         DeleteRowButton.IsEnabled = true;
     }
 
+    private void ReplaceRows(IReadOnlyList<BadgeDataRow> rows)
+    {
+        if (master == null) return;
+        RowsPanel.Children.Clear();
+        rowEditors.Clear();
+        AddRowHeader();
+        foreach (var row in rows)
+        {
+            var container = new StackPanel { Orientation = Orientation.Horizontal, Margin = new Thickness(0, 2, 0, 2) };
+            var valueBoxes = new List<TextBox>();
+            foreach (var variable in master.Variables)
+            {
+                var box = new TextBox { Width = 92, Margin = new Thickness(0, 0, 4, 0), Text = row.GetValue(variable), ToolTip = variable };
+                box.TextChanged += RowInputChanged;
+                valueBoxes.Add(box);
+                container.Children.Add(box);
+            }
+
+            var quantityBox = new TextBox { Width = 48, Text = row.Quantity.ToString(CultureInfo.InvariantCulture), ToolTip = "Quantity" };
+            quantityBox.TextChanged += RowInputChanged;
+            container.Children.Add(quantityBox);
+            rowEditors.Add(new RowEditor(container, valueBoxes, quantityBox));
+            RowsPanel.Children.Add(container);
+        }
+        DeleteRowButton.IsEnabled = rowEditors.Count > 0;
+    }
+
     private void AddRowHeader()
     {
         if (master == null) return;
@@ -279,6 +349,7 @@ public sealed partial class CorelMatePanel : UserControl
     {
         AddRowButton.IsEnabled = enabled;
         DeleteRowButton.IsEnabled = enabled && rowEditors.Count > 0;
+        ImportDataButton.IsEnabled = enabled;
         PreviewButton.IsEnabled = enabled;
         GenerateButton.IsEnabled = enabled;
     }
@@ -288,6 +359,7 @@ public sealed partial class CorelMatePanel : UserControl
         UseSelectedButton.IsEnabled = !busy;
         AddRowButton.IsEnabled = !busy && master != null;
         DeleteRowButton.IsEnabled = !busy && rowEditors.Count > 0;
+        ImportDataButton.IsEnabled = !busy && master != null;
         PreviewButton.IsEnabled = !busy && master != null;
         GenerateButton.IsEnabled = !busy && master != null;
         ResetButton.IsEnabled = !busy;

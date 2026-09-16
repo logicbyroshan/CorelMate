@@ -11,3 +11,5 @@
 - Desktop automation could not foreground CorelDRAW reliably for click-by-click WPF testing; do not claim the full UI workflow until manually verified.
 - 100 badges passed in about 9 seconds; 500 and 1000 badge performance remains unverified.
 - Convert Text to Curves special containers, symbols, text-on-path, and full button-driven confirmation remain unverified.
+- Real foreground CSV/XLSX file-picker interaction is unverified; synthetic parser/mapping tests pass.
+- XLSX uses the first worksheet and does not evaluate formulas or preserve spreadsheet formatting.

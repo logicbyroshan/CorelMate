@@ -1,3 +1,5 @@
 # Current State
 
 Updated 2026-09-16. CorelMate has a hardened stateful WPF Badge Generator panel with dynamic variable rows, preview, reset, validation, and generation locking. Pure tests pass. Real v27.1 tests cover grouped generation, 100 badges across 5 pages, missing-value preflight rejection, and command-group undo/redo. Final release packaging and extracted install/uninstall pass. Task 6 adds native Convert Text to Curves through shared traversal; artistic, paragraph, locked/hidden, and undo/redo checks pass. Full button-driven UI and special-container behavior remain unverified. Automatic `.addon` startup remains unverified.
+
+Task 7 adds dependency-free CSV/XLSX import mapped into existing `BadgeDataRow` values. Synthetic parser/mapping tests pass, and a real v27.1 CSV-to-generator bridge produced 11 badges. Foreground file-picker/import interaction remains unverified.

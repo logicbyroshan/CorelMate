@@ -93,3 +93,17 @@ What changed: Added shared planned traversal, preflight summary, locked/hidden c
 Testing performed: Build/tests passed. CorelDRAW 27.1 verified grouped artistic conversion, paragraph conversion, non-text preservation, locked/hidden counts, and Undo/Redo.
 
 Follow-up: Verify WPF confirmation clicks and special containers/text-on-path before claiming full feature coverage.
+
+## 2026-09-16: Task 7 CSV/XLSX Import
+
+Task: Add local spreadsheet import to Badge Generator without creating a second generation pipeline.
+
+Reason: Allow CSV/XLSX data to feed the existing validated `BadgeDataRow` and CorelDRAW generation path.
+
+Files/areas affected: `CorelMate.Badges`, `CorelMate.UI`, tests, packaging documentation, and agent memory.
+
+What changed: Added standards-aware CSV parsing, direct first-worksheet XLSX ZIP/XML reading, header normalization/mapping, duplicate/missing/extra-column handling, row/quantity validation, Unicode support, and WPF file import.
+
+Testing performed: Synthetic CSV/XLSX import tests and full solution regression tests pass. No Excel COM or clipboard automation was used.
+
+Follow-up: Perform foreground CorelDRAW file-picker/import and imported-data generation verification.

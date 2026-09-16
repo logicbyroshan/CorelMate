@@ -33,3 +33,10 @@
 - Verified: Release build and pure tests; real v27.1 generation of 100 badges across 5 pages in about 9 seconds; missing-value preflight rejection; grouped generation undo/redo via shape counts.
 - Verified: final clean release ZIP with all managed dependencies; extracted package install and uninstall passed.
 - Unverified: click-by-click WPF interaction, visual foreground screenshot, formatting variants, 500/1000 quantities, and full realistic user workflow.
+
+## 2026-09-16 - Task 6 Convert Text to Curves
+
+- Goal: add selection-scoped native text-to-curves conversion without affecting Badge Generator behavior.
+- Changed: added shared materialized shape traversal, Curves summary model, Host preflight/converter, WPF confirmation/result controls, and Curves regression coverage.
+- Verified: v27.1 artistic/grouped conversion, paragraph conversion, rectangle preservation, locked/hidden classification, and command-group undo/redo.
+- Unverified: special containers, symbols, text-on-path, full WPF confirmation clicks, and large text-selection performance.

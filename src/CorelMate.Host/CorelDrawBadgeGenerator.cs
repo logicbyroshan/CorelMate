@@ -60,7 +60,7 @@ public sealed class CorelDrawBadgeGenerator
         if (selection == null || selection.Count == 0) throw new InvalidOperationException("Select the complete master artwork first.");
 
         var variables = new List<string>();
-        foreach (var shape in EnumerateShapes(selection.Shapes)) CollectVariables(shape, variables);
+        foreach (var node in CorelShapeTraversal.Flatten(selection)) CollectVariables(node.Shape, variables);
         if (variables.Count == 0) throw new InvalidOperationException("No dynamic variables were found in the selected artwork.");
 
         return new CorelBadgeMaster(document, selection, page, document.ToUnits(selection.SizeWidth, cdrUnit.cdrMillimeter), document.ToUnits(selection.SizeHeight, cdrUnit.cdrMillimeter), document.ToUnits(page.SizeWidth, cdrUnit.cdrMillimeter), document.ToUnits(page.SizeHeight, cdrUnit.cdrMillimeter), variables);
@@ -101,7 +101,7 @@ public sealed class CorelDrawBadgeGenerator
                     var positionIndex = itemIndex % plan.PerPage;
                     var page = pageIndex == 0 ? master.Page : document.Pages[originalPageCount + pageIndex];
                     var copy = master.Selection.Duplicate(0, 0);
-                    ReplacePlaceholders(copy.Shapes, row.Values);
+                    ReplacePlaceholders(copy, row.Values);
                     MoveToPosition(copy, page, settings, plan.Pages[pageIndex].Positions[positionIndex], document);
                     createdRanges.Add(copy);
                 }
@@ -123,19 +123,6 @@ public sealed class CorelDrawBadgeGenerator
 
     private CorelDocument RequireDocument() => host.ActiveDocument ?? throw new InvalidOperationException("CorelDRAW does not have an active document.");
 
-    private static IEnumerable<CorelShape> EnumerateShapes(Shapes shapes)
-    {
-        for (var index = 1; index <= shapes.Count; index++)
-        {
-            var shape = shapes[index];
-            if (shape.Type == cdrShapeType.cdrGroupShape)
-            {
-                foreach (var child in EnumerateShapes(shape.Shapes)) yield return child;
-            }
-            else yield return shape;
-        }
-    }
-
     private static void CollectVariables(CorelShape shape, IList<string> variables)
     {
         if (shape.Type != cdrShapeType.cdrTextShape) return;
@@ -151,10 +138,11 @@ public sealed class CorelDrawBadgeGenerator
         return false;
     }
 
-    private static void ReplacePlaceholders(Shapes shapes, IReadOnlyDictionary<string, string> values)
+    private static void ReplacePlaceholders(CorelShapeRange range, IReadOnlyDictionary<string, string> values)
     {
-        foreach (var shape in EnumerateShapes(shapes))
+        foreach (var node in CorelShapeTraversal.Flatten(range))
         {
+            var shape = node.Shape;
             if (shape.Type != cdrShapeType.cdrTextShape) continue;
             foreach (var placeholder in PlaceholderParser.Parse(shape.Text.Story.Text))
             {

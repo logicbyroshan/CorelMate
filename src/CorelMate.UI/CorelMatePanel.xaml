@@ -38,6 +38,11 @@
         <Button x:Name="ResetButton" Margin="6,0,0,0" Padding="8,4" Content="Reset" Click="ResetButton_Click" />
       </StackPanel>
       <TextBlock x:Name="ResultText" Margin="0,8,0,0" TextWrapping="Wrap" />
+      <Separator Margin="0,20,0,12" />
+      <TextBlock Text="TEXT TO CURVES" FontWeight="Bold" />
+      <TextBlock Margin="0,6,0,0" Text="Convert selected text objects into curves." TextWrapping="Wrap" />
+      <Button x:Name="ConvertCurvesButton" Margin="0,8,0,0" Padding="8,4" Content="Convert Text to Curves" Click="ConvertCurvesButton_Click" />
+      <TextBlock x:Name="CurvesResultText" Margin="0,8,0,0" TextWrapping="Wrap" />
     </StackPanel>
   </ScrollViewer>
 </UserControl>

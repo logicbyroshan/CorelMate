@@ -25,6 +25,7 @@ public sealed partial class CorelMatePanel : UserControl
     }
 
     private readonly CorelDrawBadgeGenerator? generator;
+    private readonly CorelTextToCurvesConverter? curvesConverter;
     private readonly List<RowEditor> rowEditors = new List<RowEditor>();
     private CorelBadgeMaster? master;
     private bool isGenerating;
@@ -38,7 +39,9 @@ public sealed partial class CorelMatePanel : UserControl
         InitializeComponent();
         try
         {
-            generator = new CorelDrawBadgeGenerator(CorelDrawHost.ConnectToRunningInstance());
+            var corelHost = CorelDrawHost.ConnectToRunningInstance();
+            generator = new CorelDrawBadgeGenerator(corelHost);
+            curvesConverter = new CorelTextToCurvesConverter(corelHost);
             StatusText.Text = "CorelDRAW " + targetVersion + " connected. Select a master badge.";
         }
         catch (Exception exception)
@@ -133,6 +136,36 @@ public sealed partial class CorelMatePanel : UserControl
         ResultText.Text = string.Empty;
         StatusText.Text = "Select the complete badge artwork in CorelDRAW first.";
         SetMasterControlsEnabled(false);
+    }
+
+    private void ConvertCurvesButton_Click(object sender, RoutedEventArgs e)
+    {
+        try
+        {
+            if (curvesConverter == null) throw new InvalidOperationException("CorelDRAW is not connected.");
+            var preflight = curvesConverter.PreflightSelection();
+            if (preflight.Summary.ConvertibleTextObjects == 0)
+            {
+                CurvesResultText.Text = "No convertible text was found in the selected artwork.";
+                if (preflight.Summary.SkippedTextObjects > 0) CurvesResultText.Text += " " + preflight.Summary.SkippedTextObjects + " text object(s) were skipped.";
+                return;
+            }
+
+            var confirmation = MessageBox.Show(
+                "Convert " + preflight.Summary.ConvertibleTextObjects + " text object(s) to curves?\r\n\r\nThis makes those text objects no longer editable as text.",
+                "Convert Text to Curves",
+                MessageBoxButton.OKCancel,
+                MessageBoxImage.Warning);
+            if (confirmation != MessageBoxResult.OK) return;
+
+            var result = curvesConverter.Convert(preflight);
+            CurvesResultText.Text = result.ConvertedTextObjects + " text object(s) converted to curves.";
+            if (result.Summary.SkippedTextObjects > 0) CurvesResultText.Text += " " + result.Summary.SkippedTextObjects + " skipped.";
+        }
+        catch (Exception exception)
+        {
+            CurvesResultText.Text = exception is InvalidOperationException ? exception.Message : "CorelDRAW could not complete the text conversion. Verify the selected artwork is still available.";
+        }
     }
 
     private List<BadgeDataRow> ParseRows()

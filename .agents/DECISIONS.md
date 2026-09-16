@@ -71,3 +71,17 @@ Alternatives: Add a large MVVM framework, run Corel mutations on a background th
 Reason: This improves the real workflow without adding dependencies or moving COM work off CorelDRAW's context.
 
 Consequences: The UI remains compact code-behind. Full automated WPF interaction tests are not present.
+
+## ADR-008: Native Corel Text Conversion With Planned Traversal
+
+Status: Accepted for Task 6; special-container behavior remains unverified.
+
+Context: Convert Text to Curves must be selection-scoped, recursive, undo-aware, and must not mutate a live shape collection during traversal.
+
+Decision: Materialize selected/grouped shape nodes with `CorelShapeTraversal`, classify text/locked/hidden objects during preflight, then call the installed v27 `Shape.ConvertToCurves()` API inside `Document.BeginCommandGroup`/`EndCommandGroup`.
+
+Alternatives: Clipboard copy/paste, rebuilding text as curves, flattening artwork, or mutating collections during traversal.
+
+Reason: The native Corel operation preserves Corel's visual formatting and object semantics; a plan-before-mutation pass avoids invalid collection iteration.
+
+Consequences: The original text COM references are not reused after conversion. Special containers/symbols and full interactive UI behavior require further host testing.

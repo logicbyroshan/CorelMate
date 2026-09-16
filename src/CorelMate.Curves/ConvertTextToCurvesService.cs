@@ -1,13 +1,19 @@
-using System;
-
 namespace CorelMate.Curves;
 
-public interface IConvertTextToCurvesService
+public enum CurveSkipReason
 {
-    void ConvertSelection();
+    Locked,
+    Hidden,
+    Unsupported
 }
 
-public sealed class ConvertTextToCurvesService : IConvertTextToCurvesService
+public sealed class CurveConversionSummary
 {
-    public void ConvertSelection() => throw new NotSupportedException("CorelDRAW object-model execution is not implemented in the foundation milestone.");
+    public int FoundTextObjects { get; set; }
+    public int ConvertibleTextObjects { get; set; }
+    public int LockedTextObjects { get; set; }
+    public int HiddenTextObjects { get; set; }
+    public int UnsupportedTextObjects { get; set; }
+
+    public int SkippedTextObjects => LockedTextObjects + HiddenTextObjects + UnsupportedTextObjects;
 }

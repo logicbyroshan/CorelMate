@@ -16,7 +16,8 @@ $managedAssemblies = @(
   'CorelMate.Host.dll',
   'CorelMate.Badges.dll',
   'CorelMate.Infrastructure.dll',
-  'CorelMate.Core.dll'
+  'CorelMate.Core.dll',
+  'CorelMate.Curves.dll'
 )
 
 if (Test-Path $outputRoot) { Remove-Item $outputRoot -Recurse -Force }

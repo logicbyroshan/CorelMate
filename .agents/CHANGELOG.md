@@ -40,3 +40,9 @@
 - Added WPF confirmation/result controls for selected text conversion.
 - Verified artistic/grouped and paragraph conversion plus locked/hidden reporting and undo/redo in CorelDRAW 27.1.
 - Documented special-container and interactive UI limitations.
+
+## 0.1.0 - 2026-09-16 - Project Branding And Open-Source Documentation
+
+- Added the canonical CorelMate logo under `assets/brand/corelmate-logo.png`.
+- Rebuilt the root README as a branded open-source project guide.
+- Added MIT license, contribution guide, security policy, code of conduct, and support guide.

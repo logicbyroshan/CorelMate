@@ -48,6 +48,13 @@
 - Added WPF import action without creating a second generation pipeline.
 - Added synthetic import regression coverage and documented real-host import limitations.
 
+## 0.1.0 - 2026-09-16 - Task 8
+
+- Audited the existing Badge Generator workflow and release path.
+- Fixed stale row/result state after failed master capture, invalid import, and reset.
+- Verified manual 11-badge adapter generation, invalid preflight, master preservation, and undo/redo in CorelDRAW 27.1.
+- Documented the remaining foreground WPF/XLSX/document-switching/performance limits.
+
 ## 0.1.0 - 2026-09-16 - Project Branding And Open-Source Documentation
 
 - Added the canonical CorelMate logo under `assets/brand/corelmate-logo.png`.

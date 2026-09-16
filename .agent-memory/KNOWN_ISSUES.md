@@ -14,6 +14,7 @@
 - The WPF UI catches and displays exception messages but does not yet route technical exceptions through a real structured logger.
 - Desktop automation could not foreground CorelDRAW reliably for click-by-click WPF testing; do not claim the full UI workflow until manually verified.
 - Task 7 foreground file-picker/import and real imported-data CorelDRAW workflow remain unverified.
+- Task 8 foreground WPF interaction, real XLSX generation, document switching, and 500/1000 performance remain unverified.
 - Convert Text to Curves special containers, symbols, text-on-path, and interactive confirmation remain unverified.
 
 These findings are recorded only; bootstrap does not fix them.

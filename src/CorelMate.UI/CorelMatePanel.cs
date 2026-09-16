@@ -137,6 +137,7 @@ public sealed partial class CorelMatePanel : UserControl
                 CurvesResultText.Text = string.Empty;
                 ResultText.Text = message;
                 StatusText.Text = "Import rejected; CorelDRAW was not modified.";
+                ClearRowState();
                 return;
             }
 
@@ -149,6 +150,7 @@ public sealed partial class CorelMatePanel : UserControl
         catch (Exception exception)
         {
             ShowFriendlyError(exception);
+            ClearRowState();
         }
     }
 
@@ -177,8 +179,9 @@ public sealed partial class CorelMatePanel : UserControl
         BadgeHeightText.Text = string.Empty;
         PreviewText.Text = "Capture a master to preview the layout.";
         ResultText.Text = string.Empty;
+        CurvesResultText.Text = string.Empty;
         StatusText.Text = "Select the complete badge artwork in CorelDRAW first.";
-        SetMasterControlsEnabled(false);
+        ClearMasterState();
     }
 
     private void ConvertCurvesButton_Click(object sender, RoutedEventArgs e)
@@ -368,9 +371,20 @@ public sealed partial class CorelMatePanel : UserControl
     private void ClearMasterState()
     {
         master = null;
+        ClearRowState();
+        BadgeWidthText.Text = string.Empty;
+        BadgeHeightText.Text = string.Empty;
         SetMasterControlsEnabled(false);
         VariablesText.Text = "None detected";
         PreviewText.Text = "Capture a master to preview the layout.";
+    }
+
+    private void ClearRowState()
+    {
+        rowEditors.Clear();
+        RowsPanel.Children.Clear();
+        DeleteRowButton.IsEnabled = false;
+        PreviewText.Text = master == null ? "Capture a master to preview the layout." : "Preview unavailable until the layout and rows are valid.";
     }
 
     private void ShowFriendlyError(Exception exception)

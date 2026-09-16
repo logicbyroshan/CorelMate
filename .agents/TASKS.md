@@ -19,3 +19,5 @@
 - [ ] Verify the full WPF Curves confirmation workflow and special containers/text-on-path behavior.
 - [x] Add CSV/XLSX parsing, header mapping, normalized rows, and pre-generation validation.
 - [ ] Verify the WPF file-picker/import workflow in a foreground CorelDRAW session.
+- [x] Audit and harden stale Badge Generator UI state after failed capture/import/reset.
+- [x] Verify manual adapter generation, invalid preflight, and undo/redo in CorelDRAW 27.1.

@@ -107,3 +107,13 @@ What changed: Added standards-aware CSV parsing, direct first-worksheet XLSX ZIP
 Testing performed: Synthetic CSV/XLSX import tests and full solution regression tests pass. No Excel COM or clipboard automation was used.
 
 Follow-up: Perform foreground CorelDRAW file-picker/import and imported-data generation verification.
+
+## 2026-09-16: Task 8 Badge Generator QA
+
+Task: Audit and harden the existing Badge Generator without changing its architecture.
+
+What changed: Fixed stale row/layout/result state after failed master capture, invalid import, and reset.
+
+Testing performed: Baseline build, smoke tests, release package, and real v27.1 manual adapter QA. Verified 11-badge generation, master preservation, invalid preflight rejection, Undo, and Redo.
+
+Unverified: foreground WPF/file-picker interaction, real XLSX generation, document switching, and 500/1000 badge performance.

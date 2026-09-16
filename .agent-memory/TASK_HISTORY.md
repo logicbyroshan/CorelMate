@@ -63,3 +63,19 @@ Important decisions: Keep calculations pure; use native Corel object-model dupli
 Testing performed: Pure smoke tests passed. Real CorelDRAW 27.1 temporary-document test generated three copies from a grouped master with two placeholders.
 
 Follow-up: Test the WPF workflow interactively, overflow pages, undo/redo, formatting preservation, and rerun release packaging with all managed dependencies.
+
+## 2026-09-16: Task 5 Workflow Hardening
+
+Task: Harden the real Badge Generator user workflow.
+
+Reason: Task 4 had a functional engine but only a pipe-delimited input area and no preview/reset/busy-state protection.
+
+Files/areas affected: `CorelMate.UI`, `CorelMate.Host`, and Task 5 documentation.
+
+What changed: Added dynamic variable-derived row editors, row-level validation, preview stats, reset, friendly error mapping, duplicate-submit protection, and captured-document validation.
+
+Important decisions: Keep Corel mutations synchronous and preview pure; do not introduce MVVM/dependency frameworks or background COM work.
+
+Testing performed: Build/tests passed. Real CorelDRAW 27.1 generated 100 badges over 5 pages in about 9 seconds; missing-value preflight rejected; grouped generation undo/redo restored shape counts.
+
+Follow-up: Manually verify the WPF buttons and formatting/large-quantity behavior in a foreground CorelDRAW session.

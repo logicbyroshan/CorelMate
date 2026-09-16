@@ -57,3 +57,17 @@ Reason: The pure engine is testable and generic; the adapter uses verified v27 o
 Consequences: Formatting preservation depends on Corel's native `Text.Replace`; Excel/CSV import and richer table editing remain future work.
 
 Verification: Pure tests pass. A real v27.1 temporary-document test captured a grouped master with `{{TITLE}}` and `{{STANDARD}}`, generated three copies, and retained the master.
+
+## ADR-007: Stateful Synchronous Badge UI
+
+Status: Accepted for Task 5; complete interactive Docker workflow remains partially unverified.
+
+Context: The first Badge Generator panel used a pipe-delimited text area and had no preview, reset, row management, or duplicate-submit protection.
+
+Decision: Keep a compact WPF state model centered on the captured master, dynamic row editors, and an `isGenerating` guard. Validate rows before mutation, calculate preview through `BadgeLayoutEngine`, disable mutation controls while generating, and reset only UI state.
+
+Alternatives: Add a large MVVM framework, run Corel mutations on a background thread, or keep free-form pipe-delimited input.
+
+Reason: This improves the real workflow without adding dependencies or moving COM work off CorelDRAW's context.
+
+Consequences: The UI remains compact code-behind. Full automated WPF interaction tests are not present.

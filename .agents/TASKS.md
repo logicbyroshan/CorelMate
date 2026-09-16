@@ -12,3 +12,5 @@
 - [ ] Add a real unit-test framework once pure logic grows.
 - [ ] Implement generic badge placeholder parsing and page-fit calculations.
 - [ ] Implement document adapters only after host lifecycle is verified.
+- [x] Add dynamic row editing, preview, reset, validation, and duplicate-submit protection.
+- [x] Verify 100-badge generation, multi-page output, preflight failure, and undo/redo through the adapter.
